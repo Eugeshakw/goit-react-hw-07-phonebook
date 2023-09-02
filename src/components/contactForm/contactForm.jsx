@@ -1,9 +1,9 @@
 import React from 'react';
 
 import style from './contactform.module.scss';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import {createContact} from '../redux/createSlice'
+// import {createContact} from '../redux/createSlice'
 
 const Contactform = () => {
   
