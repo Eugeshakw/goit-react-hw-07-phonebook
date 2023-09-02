@@ -11,31 +11,31 @@ const Contactform = () => {
  
  const contacts = useSelector(state => state.contacts.contacts)
  
- console.log(contacts);
-    const onSubmitFrom = (e) => {
-      e.preventDefault();
-      const number = e.target.number.value;
-      const name = e.target.name.value;
+
+    // const onSubmitFrom = (e) => {
+    //   e.preventDefault();
+    //   const number = e.target.number.value;
+    //   const name = e.target.name.value;
       
-      if (number === ''){
-        alert('Please enter a number');
-          return
-      } else if (contacts.some(
-        contact => 
-        contact.number.toLowerCase() === number.toLowerCase() || 
-        contact.name.toLowerCase() === name.toLowerCase())){
-          alert(`${name} or entered number is already in contacts.`);
-          return;
-        }
+    //   if (number === ''){
+    //     alert('Please enter a number');
+    //       return
+    //   } else if (contacts.items.some(
+    //     contact => 
+    //     contact.number.toLowerCase() === number.toLowerCase() || 
+    //     contact.name.toLowerCase() === name.toLowerCase())){
+    //       alert(`${name} or entered number is already in contacts.`);
+    //       return;
+    //     }
         
-      e.target.reset();
-      dispatch(createContact({ name, number, id: nanoid() }));
+    //   e.target.reset();
+    //   dispatch(createContact({ name, number, id: nanoid() }));
      
-    } 
+    // } 
 
   return (
     <>
-      <form className={style.formContainer} onSubmit={onSubmitFrom} >
+      <form className={style.formContainer}  >
         <label className={style.labName} htmlFor="name">
           Name
         </label>
