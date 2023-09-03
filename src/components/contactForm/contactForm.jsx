@@ -1,41 +1,47 @@
 import React from 'react';
 
 import style from './contactform.module.scss';
-import { nanoid } from 'nanoid';
+
 import { useDispatch, useSelector } from 'react-redux';
-import {createContact} from '../redux/createSlice'
+import { nanoid } from 'nanoid';
+import { fetchContactsAdd } from '../redux/createSlice';
 
 const Contactform = () => {
-  
- const dispatch = useDispatch()
- 
- const contacts = useSelector(state => state.contacts.contacts)
- 
+  const dispatch = useDispatch();
 
-    // const onSubmitFrom = (e) => {
-    //   e.preventDefault();
-    //   const number = e.target.number.value;
-    //   const name = e.target.name.value;
-      
-    //   if (number === ''){
-    //     alert('Please enter a number');
-    //       return
-    //   } else if (contacts.items.some(
-    //     contact => 
-    //     contact.number.toLowerCase() === number.toLowerCase() || 
-    //     contact.name.toLowerCase() === name.toLowerCase())){
-    //       alert(`${name} or entered number is already in contacts.`);
-    //       return;
-    //     }
-        
-    //   e.target.reset();
-    //   dispatch(createContact({ name, number, id: nanoid() }));
-     
-    // } 
+  const contacts = useSelector(state => state.contacts.contacts);
+  console.log(contacts);
 
+  const onSubmitFrom = e => {
+    e.preventDefault();
+    const number = e.target.number.value;
+    const name = e.target.name.value;
+    if (number === '') {
+      alert('Please enter a number');
+      return;
+    } else if (
+      contacts.items.some(
+        contact =>
+          contact.number.toLowerCase() === number.toLowerCase() ||
+          contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
+      alert(`${name} or entered number is already in contacts.`);
+      return;
+    } else if (!/^\d+$/.test(number)) {
+      alert('Please enter a valid number.');
+      return;
+    }
+    dispatch(fetchContactsAdd({ name, number, id: nanoid() }));
+    e.target.reset();
+  };
   return (
     <>
-      <form className={style.formContainer}  >
+      <form
+        className={style.formContainer}
+        onSubmit={onSubmitFrom}
+        autoComplete="off"
+      >
         <label className={style.labName} htmlFor="name">
           Name
         </label>
@@ -46,8 +52,6 @@ const Contactform = () => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           id="name"
-          
-          
         />
 
         <label className={style.labNumber} htmlFor="number">
@@ -71,5 +75,3 @@ const Contactform = () => {
   );
 };
 export default Contactform;
-
-
