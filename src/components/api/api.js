@@ -9,7 +9,7 @@ export const allContactsGet = async () => {
 export const addContacts = async (contactData) => {
     const {data} = await axios({
         method: 'POST',
-        url: `https://64eaff72e51e1e82c576e82b.mockapi.io/Contacts`,
+        url: `https://64f1e05b0e1e60602d24644f.mockapi.io/contact`,
         data: contactData
     })
     console.log(data);
