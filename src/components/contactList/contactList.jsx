@@ -20,7 +20,8 @@ const Contactslist = () => {
   const onDeleteContact = contactId => {
     dispatch(fetchDeleteContacts(contactId));
   };
-
+ 
+ 
   if (!contacts) {
     return <p>loading</p>
   }
