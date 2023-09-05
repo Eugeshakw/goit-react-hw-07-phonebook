@@ -4,9 +4,9 @@ import { fetchDeleteContacts } from '../redux/createSlice';
 
 const Contactslist = () => {
   const contacts = useSelector(state => state.contacts.contacts.items);
-  console.log(contacts);
-  // const isLoading = useSelector(state => state.contacts.isLoading);
-
+  
+  const isLoading = useSelector(state => state.contacts.contacts.isLoading);
+  console.log(isLoading);
   const dispatch = useDispatch();
   const filter = useSelector(state => state.contacts.filter);
 
@@ -22,12 +22,13 @@ const Contactslist = () => {
   };
  
  
-  if (!contacts) {
-    return <p>loading</p>
+  if (isLoading) {
+    return <p>loading...</p>
   }
 
   return (
     <>
+    
       <ul>
         {filteredContacts.map(contactitem => {
           
